@@ -1,0 +1,30 @@
+---
+sitemap: false
+noindex: true
+---
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang }}">
+
+<head>
+  {% include head.html %}
+</head>
+
+<body>
+  {% include nav.html %}
+  <main class="page-content" aria-label="Content">
+    <h1 style="display: inline-flex; flex-direction: row; align-items: center;">
+      {%-include logo.html-%}
+      <span>{{ page.title | default: 'redirecting...' }}</span>
+    </h1>
+    <blockquote><a href="{{ page.redirect.to | relative_url}}" id="url">点击跳转<br>Click to continue</a></blockquote>
+    {{ content }}
+  </main>
+</body>
+
+<script>
+  window.onload = function () {
+    window.location = document.getElementById('url').href
+  }
+</script>
+
+</html>

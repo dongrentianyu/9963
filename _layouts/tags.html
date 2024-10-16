@@ -1,0 +1,36 @@
+---
+noindex: true
+---
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang }}">
+
+<head>
+  {% include head.html %}
+</head>
+
+<body>
+  {% include nav.html %}
+  <main class="page-content" aria-label="Content">
+    <header>
+      <h1 style="display: inline-flex; flex-direction: row; align-items: center;">
+        {%-include logo.html-%}
+        <span>{{ page.title }}</span>
+      </h1>
+      {{ content }}
+    </header>
+    {%- if site.tags.size > 0 -%}
+    <ul class="post-list">
+      {%- for tag in site.tags -%}
+      {%- assign taglist = site.tags | map: first | sort_natural -%}
+      <li><a href="{{ site.baseurl }}/tag/{{ tag[0] }}">{{ tag[0] }}<sup>[{{ tag[1] | size }}]</sup></a></span>
+      {%- endfor -%}
+      {% assign fruits = "orange,apple,peach" | split: ',' %}
+    </ul>
+    {%- endif -%}
+  </main>
+  {%-if site.goat_counter and jekyll.environment == "production"-%}
+  {% include goat_counter.html %}
+  {%-endif-%}
+</body>
+
+</html>
